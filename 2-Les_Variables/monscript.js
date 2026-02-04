@@ -34,5 +34,6 @@
 
 
 
-let nomSerie;
-let nomPerso;
+let nomSerie=prompt("quelle est ta série préférée");
+let nomPerso=prompt("quelle est ton personnage favori");
+alert(`Ma série préférée est ${nomSerie} et mon personnage est ${nomPerso}!`);
