@@ -1,0 +1,16 @@
+
+// function calculerAge(){
+//     let born = parseInt(prompt("annee de naissance ???"))
+//     let year = parseInt(prompt("annee de actuelle"))
+//     let age = year - born;
+//     alert(` vous avez ${age}`);
+// }
+// calculerAge();
+
+const calculerAge = ()=>{
+    let born = parseInt(prompt("annee de naissance ???"))
+    let year = parseInt(prompt("annee de actuelle"))
+    let age = year - born;
+    alert(` vous avez ${age}`);
+}
+calculerAge();
