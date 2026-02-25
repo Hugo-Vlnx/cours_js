@@ -16,27 +16,51 @@ li.addEventListener('click', ()=>{
 btn.addEventListener('click', addProduct);
 
 function addProduct() {
-let valeurSaisie = myInput.value;
+    let saisie = myInput.value.trim();
 
-    if (valeurSaisie === "") {
-        alert("Erreur");
+    if (saisie === "") {
+        alert("Erreur de saisie");
     } else {
-        let nouvelElement = document.createElement("li");
-        nouvelElement.textContent = valeurSaisie;
+        let maj = saisie.charAt(0).toUpperCase() + saisie.slice(1).toLowerCase();
+        
+        let elementsListe = liste.querySelectorAll("li");
+        let produitExistant = false;
 
-        nouvelElement.addEventListener('click', () => {
-            nouvelElement.classList.toggle('itemCheck');
-        });
+        for (let i = 0; i < elementsListe.length; i++) {
+            let texteElement = elementsListe[i].textContent;
 
-        nouvelElement.addEventListener('dblclick', () => {
-            nouvelElement.remove();
-            alert("Produit supprimé");
-        });
+            if (texteElement === maj || texteElement.startsWith(maj + " (x")) {
+                produitExistant = true;
+                
+                if (texteElement === maj) {
+                    elementsListe[i].textContent = maj + " (x2)";
+                } else {
+                    let quantiteActuelle = parseInt(texteElement.split("(x")[1]);
+                    let nouvelleQuantite = quantiteActuelle + 1;
+                    elementsListe[i].textContent = maj + " (x" + nouvelleQuantite + ")";
+                }
+                break;
+            }
+        }
 
-        liste.appendChild(nouvelElement);
+        if (!produitExistant) {
+            let nouvelElement = document.createElement("li");
+            nouvelElement.textContent = maj;
+
+            nouvelElement.addEventListener('click', () => {
+                nouvelElement.classList.toggle('itemCheck');
+            });
+
+            nouvelElement.addEventListener('dblclick', () => {
+                nouvelElement.remove();
+                alert("Produit supprimé");
+            });
+
+            liste.appendChild(nouvelElement);
+        }
+
         myInput.value = "";
     }
-
 }
 
 myInput.addEventListener('keydown', (event) => {
