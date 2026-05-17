@@ -152,9 +152,87 @@ header {
             }
         }
 
-        & .movieList {
+    & .movieList {
+            display: flex;
+            justify-content: space-between; 
             flex-grow: 1;
-            border-radius: 10px;
+
+        & .movieCard {
+                width: 252px;
+                height: 398px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+                
+
+                &:hover .posterContainer {
+                    transform: translate(-4px, -4px); 
+                    box-shadow: 12px 12px 15px rgba(0, 0, 0, 0.5); 
+                }
+
+                & .posterContainer {
+                    position: relative;
+                    width: 220px;
+                    height: 330px; 
+                    margin-top: 12px; 
+                    transition: all 0.3s ease; 
+                    
+                    & .moviePoster {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0; 
+                        
+                    }
+
+                    & .voteCircle {
+                        position: absolute;
+                        bottom: -31px;
+                        right: -31px; 
+                        width: 63px;
+                        height: 63px; 
+                        background-color: #032541; 
+                        border: 2px solid #FFFFFF; 
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #ffffff;
+                        font-family: 'Roboto', sans-serif;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                }
+
+                & .movieInfo {
+                    width: 190px; /*j ai volontairement changé la taille de la box par rapport au figma car quand les titres etait trop long le rating bah il caché une partie du titre*/
+                    height: 53px; 
+                    margin-top: 20px; 
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    & .movieTitle {
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 24px; 
+                        font-weight: 700; 
+                        color: #032541; 
+                        white-space: normal; 
+                        overflow-wrap: break-word;
+                        width: 100%;
+                        line-height: 100%;
+                    }
+
+                    & .movieDate {
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 18px; 
+                        font-weight: 400; 
+                        color: #000000;
+                        margin-top: 5px;
+                        line-height: 100%;
+                    }
+                }
+            }
         }
     }
 }
