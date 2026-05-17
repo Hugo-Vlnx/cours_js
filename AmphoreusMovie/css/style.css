@@ -54,16 +54,11 @@ header {
 
 
 .searching {
-   background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
-                      url('../image/wandavision.jpg');
+
+    background-color: #032541; 
     
-  
     background-size: cover;
-    
-  
     background-repeat: no-repeat;
-    
-    
     background-position: center 25%;
     height: 342px; 
     display: flex;
@@ -242,3 +237,5 @@ header {
         }
     }
 }
+
+
