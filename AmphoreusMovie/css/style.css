@@ -104,7 +104,13 @@ header {
     background-color: #E7E7E7; 
     width: 100%;
 }
-
+.searchGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 40px 84px; 
+    padding-bottom: 50px;
+}
 .categories {
     margin-top: 37px; 
     display: flex;
@@ -214,7 +220,7 @@ header {
 
                     & .movieTitle {
                         font-family: 'Roboto', sans-serif;
-                        font-size: 24px; 
+                        font-size: 20px; /*reduit la taille de la police car lors de la recherche le titre ne s affichait pas enentier si il etait trop long, caché par les autrs films */
                         font-weight: 700; 
                         color: #032541; 
                         white-space: normal; 
@@ -225,7 +231,7 @@ header {
 
                     & .movieDate {
                         font-family: 'Roboto', sans-serif;
-                        font-size: 18px; 
+                        font-size: 14px; 
                         font-weight: 400; 
                         color: #000000;
                         margin-top: 5px;

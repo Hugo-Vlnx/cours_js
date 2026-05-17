@@ -32,31 +32,60 @@
     <main>
       <section class="searching">
         <form class="searchBar" action="#" method="GET">
-          <input type="text" placeholder="Rechercher un film" />
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher un film, une série..."
+            autocomplete="off"
+          />
           <button type="submit" aria-label="Rechercher">
             <i class="fa-solid fa-search"></i>
           </button>
         </form>
       </section>
 
-      <section class="categories">
-        <div class="category">
+      <section id="searchPage" class="categories" style="display: none">
+        <div class="category" style="height: auto">
           <div class="categoryHeader">
-            <h2>Tendances</h2>
-            <div class="choiceButton">
-              <button>Aujourd'hui</button>
-              <button>Cette semaine</button>
-            </div>
+            <h2 id="searchTitle">Résultats de recherche</h2>
           </div>
-          <div class="movieList"></div>
+          <div class="movieList searchGrid"></div>
         </div>
       </section>
 
-      <div class="grayBG">
+      <div id="homePage">
         <section class="categories">
           <div class="category">
             <div class="categoryHeader">
-              <h2>Films</h2>
+              <h2>Tendances</h2>
+              <div class="choiceButton">
+                <button>Aujourd'hui</button>
+                <button>Cette semaine</button>
+              </div>
+            </div>
+            <div class="movieList"></div>
+          </div>
+        </section>
+
+        <div class="grayBG">
+          <section class="categories">
+            <div class="category">
+              <div class="categoryHeader">
+                <h2>Films</h2>
+                <div class="choiceButton">
+                  <button>Mieux notées</button>
+                  <button>Populaires</button>
+                </div>
+              </div>
+              <div class="movieList"></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="categories">
+          <div class="category">
+            <div class="categoryHeader">
+              <h2>Séries</h2>
               <div class="choiceButton">
                 <button>Mieux notées</button>
                 <button>Populaires</button>
@@ -66,19 +95,6 @@
           </div>
         </section>
       </div>
-
-      <section class="categories">
-        <div class="category">
-          <div class="categoryHeader">
-            <h2>Séries</h2>
-            <div class="choiceButton">
-              <button>Mieux notées</button>
-              <button>Populaires</button>
-            </div>
-          </div>
-          <div class="movieList"></div>
-        </div>
-      </section>
     </main>
   </body>
 </html>
