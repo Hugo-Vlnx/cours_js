@@ -73,19 +73,15 @@ header {
 }
 
 
-.search-bar {
-    
+.searchBar {
     display: flex;
     width: 100%;
     max-width: 1240px;
     height: 69px; 
     background-color: #ffffff;
-   
-     
-   
 }
 
-.search-bar input {
+.searchBar input {
     flex-grow: 1; 
     border: none;
     padding: 0 30px;
@@ -94,9 +90,7 @@ header {
     outline: none; 
 }
 
-
-
-.search-bar button {
+.searchBar button {
     background-color: transparent;
     border: none;
     padding: 0 30px;
@@ -105,31 +99,57 @@ header {
     color: #000000;
 }
 
+
+.grayBG {
+    background-color: #E7E7E7; 
+    width: 100%;
+}
+
 .categories {
     margin-top: 37px; 
-
     display: flex;
     flex-direction: column;
-    gap: 40px; 
-    & .grayBG{
-             background-color: #E7E7E7;
-    }
+    padding: 20px 0; 
+
     & .category {
-        margin-left: 100px;
         width: 1262px;
         height: 485px;
-        opacity: 1;
+        margin-left: 100px; 
         display: flex;
         flex-direction: column;
         
-
-
-        & h2 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
+        & .categoryHeader {
+            display: flex;
+            align-items: center;
+            gap: 30px; 
             margin-bottom: 20px;
-            color: #032541;
+
+            & h2 {
+                font-family: 'Roboto', sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                color: #032541;
+            }
+
+          
+            & .choiceButton {
+                display: flex;
+                gap: 40px; 
+                
+                
+                & button {
+                    height: 40px;
+                    padding: 0 20px; 
+                    border: 2px solid #032541; 
+                    background-color: transparent;
+                    color: #032541;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 18px; 
+                    font-weight: 400; 
+                    cursor: pointer;
+                    
+                }
+            }
         }
 
         & .movieList {

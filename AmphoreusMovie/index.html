@@ -31,27 +31,51 @@
     </header>
     <main>
       <section class="searching">
-        <form class="search-bar" action="#" method="GET">
+        <form class="searchBar" action="#" method="GET">
           <input type="text" placeholder="Rechercher un film" />
           <button type="submit" aria-label="Rechercher">
             <i class="fa-solid fa-search"></i>
           </button>
         </form>
       </section>
+
       <section class="categories">
         <div class="category">
-          <h2>Tendances</h2>
+          <div class="categoryHeader">
+            <h2>Tendances</h2>
+            <div class="choiceButton">
+              <button>Aujourd'hui</button>
+              <button>Cette semaine</button>
+            </div>
+          </div>
           <div class="movieList"></div>
         </div>
-        <div class="grayBG">
+      </section>
+
+      <div class="grayBG">
+        <section class="categories">
           <div class="category">
-            <h2>Films</h2>
+            <div class="categoryHeader">
+              <h2>Films</h2>
+              <div class="choiceButton">
+                <button>Mieux notées</button>
+                <button>Populaires</button>
+              </div>
+            </div>
             <div class="movieList"></div>
           </div>
-        </div>
+        </section>
+      </div>
 
+      <section class="categories">
         <div class="category">
-          <h2>Séries</h2>
+          <div class="categoryHeader">
+            <h2>Séries</h2>
+            <div class="choiceButton">
+              <button>Mieux notées</button>
+              <button>Populaires</button>
+            </div>
+          </div>
           <div class="movieList"></div>
         </div>
       </section>

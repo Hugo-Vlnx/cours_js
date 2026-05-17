@@ -8,3 +8,26 @@ const options = {
     Authorization: `Bearer ${API_TOKEN}`
   }
 };
+
+const choiceButtons = document.querySelectorAll('.choiceButton');
+
+choiceButtons.forEach(group => {
+    const buttons = group.querySelectorAll('button');
+    
+    buttons[0].style.backgroundColor = '#032541';
+    buttons[0].style.color = '#ffffff';
+
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            
+            buttons.forEach(btn => {
+                btn.style.backgroundColor = 'transparent';
+                btn.style.color = '#032541';
+            });
+            
+            button.style.backgroundColor = '#032541';
+            button.style.color = '#ffffff';
+        });
+    });
+});
