@@ -107,6 +107,18 @@ header {
     gap: 40px 84px; 
     padding-bottom: 50px;
 }
+
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: translateY(30px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
 .categories {
     margin-top: 37px; 
     display: flex;
@@ -166,7 +178,7 @@ header {
                 flex-direction: column;
                 align-items: center;
                 cursor: pointer;
-                
+                animation: apparition 1.2s ease-out forwards;
 
                 &:hover .posterContainer {
                     transform: translate(-4px, -4px); 
@@ -428,6 +440,26 @@ header {
    
     #desktopNav {
         display: none; 
+        position: absolute; 
+        top: 100px; 
+        left: 0;
+        width: 100%;
+        background-color: #032541; 
+        z-index: 100; 
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    
+    #desktopNav.active {
+        display: block; 
+    }
+
+    
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
     #mobileMenu {
         display: block !important; 

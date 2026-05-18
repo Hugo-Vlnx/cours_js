@@ -75,6 +75,16 @@ export default class App {
     }
 
     setupEventListeners() {
+        
+        const mobileMenu = document.getElementById('mobileMenu');
+        const desktopNav = document.getElementById('desktopNav');
+
+        if (mobileMenu && desktopNav) {
+            mobileMenu.addEventListener('click', () => {
+                
+                desktopNav.classList.toggle('active'); 
+            });
+        }
         const searchForm = document.querySelector('.searchBar'); 
         
         
