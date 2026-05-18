@@ -1,4 +1,3 @@
-
 import Archi from './archi.js';
 import Info from './info.js';
 
@@ -14,9 +13,20 @@ export default class App {
     }
 
     async init() {
-        this.setupEventListeners();
-        await this.loadInitialBanner();
-        this.loadCategories();
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const type = urlParams.get('type');
+
+        if (id && type) {
+            
+            await this.openDetails(id, type);
+        } else {
+            
+            this.setupEventListeners();
+            await this.loadInitialBanner();
+            this.loadCategories();
+        }
     }
 
     async loadInitialBanner() {
@@ -33,12 +43,10 @@ export default class App {
         choiceGroups.forEach((group, groupIndex) => {
             const buttons = group.querySelectorAll('button');
             const container = movieLists[groupIndex];
-
            
             this.fetchAndDisplay(this.apiPaths[groupIndex][0], container);
             buttons[0].style.backgroundColor = '#032541'; 
             buttons[0].style.color = '#ffffff';
-
             
             buttons.forEach((button, btnIndex) => {
                 button.addEventListener('click', () => {
@@ -62,41 +70,43 @@ export default class App {
             const type = endpoint.includes('tv') ? 'tv' : 'movie'; 
             
             
-            this.ui.renderMovies(items, container, type, (id, type) => this.openDetails(id, type));
+            this.ui.renderMovies(items, container, type);
         }
     }
 
     setupEventListeners() {
-        
-        document.getElementById('headLogo').addEventListener('click', () => this.ui.showHome()); 
-
-        
         const searchForm = document.querySelector('.searchBar'); 
-        searchForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); 
-            const query = this.ui.searchInput.value.trim();
+        
+        
+        if (searchForm) {
+            searchForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); 
+                const query = this.ui.searchInput.value.trim();
 
-            if (query.length > 0) {
-                this.ui.homePage.style.display = 'none'; 
-                this.ui.searchPage.style.display = 'flex'; 
-                this.ui.searchTitle.textContent = `Recherche en cours pour "${query}"...`; 
-                this.ui.searchGrid.innerHTML = ''; 
+                if (query.length > 0) {
+                    this.ui.homePage.style.display = 'none'; 
+                    this.ui.searchPage.style.display = 'flex'; 
+                    this.ui.searchTitle.textContent = `Recherche en cours pour "${query}"...`; 
+                    this.ui.searchGrid.innerHTML = ''; 
 
-                const data = await this.api.searchMulti(query);
-                if (data) {
-                    const items = data.results.filter(item => item.media_type === 'movie' || item.media_type === 'tv'); 
-                    
-                    if (items.length === 0) {
-                        this.ui.searchTitle.textContent = `Aucun résultat pour "${query}"`; 
-                    } else {
-                        this.ui.searchTitle.textContent = `Résultats pour "${query}"`; 
-                        this.ui.renderMovies(items, this.ui.searchGrid, 'movie', (id, type) => this.openDetails(id, type));
+                    const data = await this.api.searchMulti(query);
+                    if (data) {
+                        const items = data.results.filter(item => item.media_type === 'movie' || item.media_type === 'tv'); 
+                        
+                        if (items.length === 0) {
+                            this.ui.searchTitle.textContent = `Aucun résultat pour "${query}"`; 
+                        } else {
+                            this.ui.searchTitle.textContent = `Résultats pour "${query}"`; 
+                            this.ui.renderMovies(items, this.ui.searchGrid, 'movie');
+                        }
                     }
+                } else {
+                    this.ui.searchPage.style.display = 'none';
+                    this.ui.homePage.style.display = 'block';
+                    this.ui.searchInput.value = '';
                 }
-            } else {
-                this.ui.showHome();
-            }
-        });
+            });
+        }
     }
 
     async openDetails(id, type) {
