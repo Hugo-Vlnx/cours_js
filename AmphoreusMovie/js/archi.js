@@ -53,7 +53,7 @@ export default class Archi {
         }).join('');
     }
 
-    showDetails(detailsData, creditsData) {
+    showDetails(detailsData, creditsData, videosData) { 
         const type = detailsData.name ? 'tv' : 'movie'; 
         const title = detailsData.title || detailsData.name;
         const date = detailsData.release_date || detailsData.first_air_date;
@@ -63,7 +63,6 @@ export default class Archi {
         const genres = detailsData.genres.map(g => g.name).join(', ');
         const runtime = type === 'movie' ? this.formatRuntime(detailsData.runtime) : (detailsData.episode_run_time ? this.formatRuntime(detailsData.episode_run_time[0]) : '');
         const year = date ? `(${date.substring(0, 4)})` : '';
-
         if (document.querySelector('.movieBanner')) {
             document.querySelector('.movieBanner').style.backgroundImage = `url('${backdropPath}')`;
         }
@@ -84,6 +83,24 @@ export default class Archi {
         }
         if (document.getElementById('detailSynopsis')) {
             document.getElementById('detailSynopsis').textContent = detailsData.overview || "Aucun synopsis disponible.";
+        }
+        const trailerContainer = document.getElementById('detailTrailer');
+        if (trailerContainer && videosData && videosData.results) {
+            const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+            
+            if (trailer) {
+                trailerContainer.innerHTML = `
+                    <div class="videoContainer">
+                        <iframe src="https://www.youtube.com/embed/${trailer.key}" allowfullscreen></iframe>
+                    </div>
+                `;
+            } else {
+                trailerContainer.innerHTML = `
+                    <div class="videoContainer">
+                        <div class="noVideo" style="display:flex; justify-content:center; align-items:center; height:100%; color:white;">Aucune bande-annonce disponible pour le moment.</div>
+                    </div>
+                `;
+            }
         }
 
         const castList = document.getElementById('castList');

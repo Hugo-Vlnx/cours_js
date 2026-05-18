@@ -171,9 +171,10 @@ export default class App {
     async openDetails(id, type) {
         const detailsData = await this.api.getDetails(id, type);
         const creditsData = await this.api.getCredits(id, type);
+        const videosData = await this.api.getVideos(id, type);
         
         if (detailsData && creditsData) {
-            this.ui.showDetails(detailsData, creditsData);
+            this.ui.showDetails(detailsData, creditsData, videosData); 
         }
     }
 }

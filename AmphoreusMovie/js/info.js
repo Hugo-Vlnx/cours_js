@@ -36,4 +36,8 @@ export default class Info {
     async getCustomBanner() {
         return this.fetchFromApi(`/search/tv?query=Girl%20from%20Nowhere&language=fr-FR`);
     }
+    
+    async getVideos(id, type) {
+        return this.fetchFromApi(`/${type}/${id}/videos?language=fr-FR`);
+    }
 }
