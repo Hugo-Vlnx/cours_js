@@ -13,7 +13,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/script.js" defer type="module"></script>
+    <script src="./js/script.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -27,12 +27,16 @@
           <li><a href="#">Populaires</a></li>
         </ul>
       </nav>
-      <div id="mobileMenu" style="display: none; font-size: 32px; cursor: pointer;">
+      <div
+        id="mobileMenu"
+        style="display: none; font-size: 32px; cursor: pointer"
+      >
         <i class="fa-solid fa-bars"></i>
       </div>
     </header>
     <main>
-      <section class="searching">
+      <h1 style="display: none">Amphoreus Movie</h1>
+      <div class="searching">
         <form class="searchBar" action="#" method="GET">
           <input
             type="text"
@@ -44,7 +48,7 @@
             <i class="fa-solid fa-search"></i>
           </button>
         </form>
-      </section>
+      </div>
 
       <section id="searchPage" class="categories" style="display: none">
         <div class="category" style="height: auto">
@@ -58,13 +62,19 @@
         <div class="movieBanner">
           <div class="bannerContent">
             <div class="bannerPosterContainer">
-              <img id="detailPoster" src="" alt="Affiche" />
+              <img
+                id="detailPoster"
+                src="./image/wandavision.jpg"
+                alt="Affiche"
+              />
             </div>
             <div class="bannerInfo">
               <div class="titleRow">
                 <div class="voteCircle" id="detailVote"></div>
                 <div class="titleBlock">
-                  <h2 id="detailTitle"></h2>
+                  <h2 id="detailTitle">
+                    titre provisoir pour enlever les waring W3C
+                  </h2>
                   <p id="detailSubtitle"></p>
                 </div>
               </div>
