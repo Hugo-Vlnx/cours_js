@@ -35,7 +35,7 @@ export default class Archi {
             const title = item.title || item.name; 
             const date = item.release_date || item.first_air_date;
             const percent = item.vote_average ? Math.round(item.vote_average * 10) : 'NR';
-            const poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://via.placeholder.com/220x330?text=Pas+d%27image';
+            const poster = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : './image/photoSansVisage.jpg';
             const type = item.media_type || defaultType;
 
             return `
@@ -63,7 +63,7 @@ export default class Archi {
         const title = detailsData.title || detailsData.name;
         const date = detailsData.release_date || detailsData.first_air_date;
         const percent = detailsData.vote_average ? Math.round(detailsData.vote_average * 10) : 'NR';
-        const posterPath = detailsData.poster_path ? `https://image.tmdb.org/t/p/w500${detailsData.poster_path}` : 'https://via.placeholder.com/270x405?text=Image';
+        const posterPath = detailsData.poster_path ? `https://image.tmdb.org/t/p/w500${detailsData.poster_path}` : './image/photoSansVisage.jpg';
         const backdropPath = detailsData.backdrop_path ? `https://image.tmdb.org/t/p/original${detailsData.backdrop_path}` : '';
         const genres = detailsData.genres.map(g => g.name).join(', ');
         const runtime = type === 'movie' ? this.formatRuntime(detailsData.runtime) : (detailsData.episode_run_time ? this.formatRuntime(detailsData.episode_run_time[0]) : '');

@@ -12,7 +12,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js" defer type="module"></script>
   </head>
@@ -45,7 +44,6 @@
       </section>
 
       <section id="searchPage" class="categories" style="display: none">
-    
         <div class="category" style="height: auto">
           <div class="categoryHeader">
             <h2 id="searchTitle">Résultats de recherche</h2>
@@ -53,32 +51,31 @@
           <div class="movieList searchGrid"></div>
         </div>
       </section>
-      <section id="detailsPage" style="display: none;">
+      <section id="detailsPage" style="display: none">
         <div class="movieBanner">
-            <div class="bannerContent">
-                <div class="bannerPosterContainer">
-                    <img id="detailPoster" src="" alt="Affiche" />
-                </div>
-                <div class="bannerInfo">
-                    <div class="titleRow">
-                        <div class="voteCircle" id="detailVote"></div>
-                        <div class="titleBlock">
-                            <h2 id="detailTitle"></h2>
-                            <p id="detailSubtitle"></p>
-                        </div>
-                    </div>
-                    <div class="synopsisBlock">
-                        <h3>Synopsis</h3>
-                        <p id="detailSynopsis"></p>
-                    </div>
-                </div>
+          <div class="bannerContent">
+            <div class="bannerPosterContainer">
+              <img id="detailPoster" src="" alt="Affiche" />
             </div>
+            <div class="bannerInfo">
+              <div class="titleRow">
+                <div class="voteCircle" id="detailVote"></div>
+                <div class="titleBlock">
+                  <h2 id="detailTitle"></h2>
+                  <p id="detailSubtitle"></p>
+                </div>
+              </div>
+              <div class="synopsisBlock">
+                <h3>Synopsis</h3>
+                <p id="detailSynopsis"></p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="castingSection">
-            <h2>Casting</h2>
-            <div class="castGrid" id="castList">
-                </div>
+          <h2>Casting</h2>
+          <div class="castGrid" id="castList"></div>
         </div>
       </section>
       <div id="homePage">
