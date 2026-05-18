@@ -464,3 +464,39 @@ header {
         width: 100%;
     }
 }
+
+
+@media (max-width: 480px) {
+    
+    .categories .category .categoryHeader {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px; 
+    }
+
+
+    .categories .category .categoryHeader .choiceButton {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; 
+        width: 100%;
+    }
+
+    
+    .categories .movieList {
+        justify-content: center; 
+       
+    }
+
+   
+    .searchBar input {
+        padding: 0 15px;
+        font-size: 16px;
+    }
+    
+    .searchBar button {
+        padding: 0 15px;
+        font-size: 24px;
+    }
+}
