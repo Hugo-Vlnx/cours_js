@@ -13,17 +13,18 @@ export default class App {
     }
 
     async init() {
-        
+        this.setupEventListeners();
+
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         const type = urlParams.get('type');
+        const view = urlParams.get('view');
 
         if (id && type) {
-            
             await this.openDetails(id, type);
+        } else if (view) {
+            await this.displayFullView(view);
         } else {
-            
-            this.setupEventListeners();
             await this.loadInitialBanner();
             this.loadCategories();
         }
@@ -68,8 +69,6 @@ export default class App {
         if (data) {
             const items = data.results.slice(0, 4); 
             const type = endpoint.includes('tv') ? 'tv' : 'movie'; 
-            
-            
             this.ui.renderMovies(items, container, type);
         }
     }
@@ -81,13 +80,26 @@ export default class App {
 
         if (mobileMenu && desktopNav) {
             mobileMenu.addEventListener('click', () => {
-                
                 desktopNav.classList.toggle('active'); 
             });
         }
+
+        const navFilms = document.getElementById('navFilms');
+        const navSeries = document.getElementById('navSeries');
+        const navPopulaires = document.getElementById('navPopulaires');
+
+        if (navFilms) navFilms.addEventListener('click', (e) => { e.preventDefault(); this.displayFullView('movie'); });
+        if (navSeries) navSeries.addEventListener('click', (e) => { e.preventDefault(); this.displayFullView('tv'); });
+        if (navPopulaires) navPopulaires.addEventListener('click', (e) => { e.preventDefault(); this.displayFullView('popular'); });
+
+    
+        const headLogo = document.getElementById('headLogo');
+        if (headLogo && !window.location.pathname.includes('focus.html')) {
+            headLogo.addEventListener('click', () => this.ui.showHome());
+        }
+
+       
         const searchForm = document.querySelector('.searchBar'); 
-        
-        
         if (searchForm) {
             searchForm.addEventListener('submit', async (e) => {
                 e.preventDefault(); 
@@ -96,7 +108,7 @@ export default class App {
                 if (query.length > 0) {
                     this.ui.homePage.style.display = 'none'; 
                     this.ui.searchPage.style.display = 'flex'; 
-                    this.ui.searchTitle.textContent = `Recherche en cours pour "${query}"...`; 
+                    this.ui.searchTitle.textContent = `Recherche en cours pour "${query}"`; 
                     this.ui.searchGrid.innerHTML = ''; 
 
                     const data = await this.api.searchMulti(query);
@@ -111,12 +123,49 @@ export default class App {
                         }
                     }
                 } else {
-                    this.ui.searchPage.style.display = 'none';
-                    this.ui.homePage.style.display = 'block';
-                    this.ui.searchInput.value = '';
+                    this.ui.showHome();
                 }
             });
         }
+    }
+
+
+    async displayFullView(view) {
+        if (!this.ui.homePage) return; 
+
+        this.ui.homePage.style.display = 'none';
+        this.ui.searchPage.style.display = 'flex';
+        this.ui.searchGrid.innerHTML = '';
+
+        let data = null;
+        let title = '';
+        let defaultType = 'movie';
+
+        if (view === 'movie') {
+            title = "Films populaires";
+            data = await this.api.getCategory('movie/popular');
+            defaultType = 'movie';
+        } else if (view === 'tv') {
+            title = "Séries populaires";
+            data = await this.api.getCategory('tv/popular');
+            defaultType = 'tv';
+        } else if (view === 'popular') {
+            title = "Populaire cette selaine";
+            data = await this.api.getCategory('trending/all/week');
+            defaultType = 'movie';
+        }
+
+        this.ui.searchTitle.textContent = title;
+
+        if (data && data.results) {
+            this.ui.renderMovies(data.results, this.ui.searchGrid, defaultType);
+        } else {
+            this.ui.searchTitle.textContent = "Erreur lors du chargement des données.";
+        }
+        
+        
+        const desktopNav = document.getElementById('desktopNav');
+        if (desktopNav) desktopNav.classList.remove('active');
     }
 
     async openDetails(id, type) {

@@ -1,12 +1,10 @@
-
-
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Détails - AmphoreusMovie</title>
+    <title>AmphoreusMovie</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -20,29 +18,36 @@
   <body>
     <header>
       <div id="headLogo">
-        <a href="index.html" style="color: white; text-decoration: none;">
+        <a href="index.html" style="color: white; text-decoration: none">
           <i class="fa-solid fa-film"></i>
         </a>
       </div>
       <nav id="desktopNav">
         <ul>
-          <li><a href="index.html">Films</a></li>
-          <li><a href="index.html">Séries</a></li>
-          <li><a href="index.html">Populaires</a></li>
+          <li><a href="index.html?view=movie">Films</a></li>
+          <li><a href="index.html?view=tv">Séries</a></li>
+          <li><a href="index.html?view=popular">Populaires</a></li>
         </ul>
       </nav>
-      <div id="mobileMenu" style="display: none; font-size: 32px; cursor: pointer">
+      <div
+        id="mobileMenu"
+        style="display: none; font-size: 32px; cursor: pointer"
+      >
         <i class="fa-solid fa-bars"></i>
       </div>
     </header>
     <main>
-      <h1 style="display: none">Détails du film ou de la série</h1>
-      
+      <h1 style="display: none">Détails</h1>
+
       <section id="detailsPage">
         <div class="movieBanner">
           <div class="bannerContent">
             <div class="bannerPosterContainer">
-              <img id="detailPoster" src="./image/photoSansVisage.jpg" alt="Affiche" />
+              <img
+                id="detailPoster"
+                src="./image/photoSansVisage.jpg"
+                alt="Affiche"
+              />
             </div>
             <div class="bannerInfo">
               <div class="titleRow">
@@ -59,7 +64,12 @@
             </div>
           </div>
         </div>
+        </div> <div class="trailerSection">
+          <h2>Bande Annonce</h2>
+          <div id="detailTrailer"></div>
+        </div>
 
+        <div class="castingSection">
         <div class="castingSection">
           <h2>Casting</h2>
           <div class="castGrid" id="castList"></div>

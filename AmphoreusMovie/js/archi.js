@@ -1,8 +1,8 @@
 export default class Archi {
     constructor() {
-        
         this.homePage = document.getElementById('homePage');
         this.searchPage = document.getElementById('searchPage');
+        this.detailsPage = document.getElementById('detailsPage');
         this.searchingSection = document.querySelector('.searching');
         this.searchGrid = document.querySelector('.searchGrid');
         this.searchTitle = document.getElementById('searchTitle');
@@ -29,8 +29,8 @@ export default class Archi {
         }
     }
 
-    
     renderMovies(items, container, defaultType) {
+        if (!container) return;
         container.innerHTML = items.map(item => {
             const title = item.title || item.name; 
             const date = item.release_date || item.first_air_date;
@@ -64,33 +64,54 @@ export default class Archi {
         const runtime = type === 'movie' ? this.formatRuntime(detailsData.runtime) : (detailsData.episode_run_time ? this.formatRuntime(detailsData.episode_run_time[0]) : '');
         const year = date ? `(${date.substring(0, 4)})` : '';
 
-        
-        document.querySelector('.movieBanner').style.backgroundImage = `url('${backdropPath}')`;
-        document.getElementById('detailPoster').src = posterPath;
-        document.getElementById('detailVote').textContent = `${percent}${percent !== 'NR' ? '%' : ''}`;
-        document.getElementById('detailTitle').textContent = `${title} ${year}`;
+        if (document.querySelector('.movieBanner')) {
+            document.querySelector('.movieBanner').style.backgroundImage = `url('${backdropPath}')`;
+        }
+        if (document.getElementById('detailPoster')) {
+            document.getElementById('detailPoster').src = posterPath;
+        }
+        if (document.getElementById('detailVote')) {
+            document.getElementById('detailVote').textContent = `${percent}${percent !== 'NR' ? '%' : ''}`;
+        }
+        if (document.getElementById('detailTitle')) {
+            document.getElementById('detailTitle').textContent = `${title} ${year}`;
+        }
         
         let subtitleText = `${this.formatDate(date)} - ${genres}`;
         if (runtime) subtitleText += ` - ${runtime}`;
-        document.getElementById('detailSubtitle').textContent = subtitleText;
-        document.getElementById('detailSynopsis').textContent = detailsData.overview || "Aucun synopsis disponible.";
+        if (document.getElementById('detailSubtitle')) {
+            document.getElementById('detailSubtitle').textContent = subtitleText;
+        }
+        if (document.getElementById('detailSynopsis')) {
+            document.getElementById('detailSynopsis').textContent = detailsData.overview || "Aucun synopsis disponible.";
+        }
 
-        // Remplissage du casting
         const castList = document.getElementById('castList');
-        const topCast = creditsData.cast.slice(0, 8); 
-        castList.innerHTML = topCast.map(actor => {
-            const actorImage = actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : './image/photoSansVisage.jpg'; 
-            return `
-                <div class="castCard">
-                    <div class="castImageContainer">
-                        <img class="castImage" src="${actorImage}" alt="${actor.name}">
+        if (castList) {
+            const topCast = creditsData.cast.slice(0, 8); 
+            castList.innerHTML = topCast.map(actor => {
+                const actorImage = actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : './image/photoSansVisage.jpg'; 
+                return `
+                    <div class="castCard">
+                        <div class="castImageContainer">
+                            <img class="castImage" src="${actorImage}" alt="${actor.name}">
+                        </div>
+                        <div class="castInfo">
+                            <div class="castName">${actor.name}</div>
+                            <div class="castCharacter">${actor.character}</div>
+                        </div>
                     </div>
-                    <div class="castInfo">
-                        <div class="castName">${actor.name}</div>
-                        <div class="castCharacter">${actor.character}</div>
-                    </div>
-                </div>
-            `;
-        }).join('');
+                `;
+            }).join('');
+        }
+    }
+
+    showHome() {
+        if (this.searchPage) this.searchPage.style.display = 'none';
+        if (this.detailsPage) this.detailsPage.style.display = 'none';
+        if (this.searchingSection) this.searchingSection.style.display = 'flex'; 
+        if (this.homePage) this.homePage.style.display = 'block';
+        if (this.searchInput) this.searchInput.value = '';
+        window.scrollTo(0, 0);
     }
 }
