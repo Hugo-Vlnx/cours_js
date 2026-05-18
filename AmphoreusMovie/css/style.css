@@ -418,3 +418,49 @@ header {
     font-size: 14px;
     color: #000000;
 }
+
+
+
+
+
+
+@media (max-width: 768px) {
+   
+    #desktopNav {
+        display: none; 
+    }
+    #mobileMenu {
+        display: block !important; 
+        margin-right: 20px;
+    }
+    #headLogo {
+        margin-left: 20px; 
+    }
+
+
+    .categories .category {
+        width: 100%; 
+        margin-left: 0; 
+        padding: 0 20px; 
+        height: auto; 
+    }
+
+   
+    .bannerContent, .castingSection {
+        padding: 0 20px;
+    }
+
+    .categories .movieList {
+        flex-wrap: wrap; 
+        justify-content: space-evenly;  
+        gap: 40px 10px; 
+        padding-bottom: 30px; 
+
+    }
+    .searching {
+        padding: 0 20px; 
+    }
+    .searchBar {
+        width: 100%;
+    }
+}
